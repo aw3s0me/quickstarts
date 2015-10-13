@@ -35,7 +35,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Completed}" Margin="10,5" VerticalAlignment="Center" Content="{Binding Title}" Checked="CheckBoxComplete_Checked" Unchecked="CheckBoxComplete_Unchecked"/>
+                            <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Completed}" Margin="10,5" VerticalAlignment="Center" Content="{Binding Title}" Checked="CheckBoxComplete_Checked" Unchecked="CheckBoxComplete_Checked"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>

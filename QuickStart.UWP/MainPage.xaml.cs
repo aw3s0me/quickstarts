@@ -1,13 +1,11 @@
 ﻿using QuickStart.UWP.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Threading.Tasks;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace QuickStart.UWP
 {
@@ -43,7 +41,7 @@ namespace QuickStart.UWP
         /// <summary>
         /// Refresh the items in the list.
         /// </summary>
-        private async void RefreshItems()
+        private async Task RefreshItems()
         {
             try
             {
@@ -61,25 +59,21 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            RefreshItems();
+            await RefreshItems();
         }
 
+        /// <summary>
+        /// Event handler that is called when a checkbox is set or cleared
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void CheckBoxComplete_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox checkbox = (CheckBox)sender;
             TaskItem item = checkbox.DataContext as TaskItem;
-            item.Completed = true;
+            item.Completed = (bool)checkbox.IsChecked;
             await store.UpdateTaskItem(item);
-            RefreshItems();
-        }
-
-        private async void CheckBoxComplete_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CheckBox checkbox = (CheckBox)sender;
-            TaskItem item = checkbox.DataContext as TaskItem;
-            item.Completed = false;
-            await store.UpdateTaskItem(item);
-            RefreshItems();
+            await RefreshItems();
         }
     }
 }
