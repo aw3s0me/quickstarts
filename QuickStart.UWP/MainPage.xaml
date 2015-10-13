@@ -30,8 +30,16 @@
             <Button x:Name="SaveTaskButton" Grid.Column="1" Margin="10,4,10,4">Save</Button>
         </Grid>
 
-        <ScrollViewer Grid.Row="2">
-
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
+            <ListView x:Name="ListItems" Margin="5,5,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox Name="CheckBoxComplete" IsChecked="{Binding Completed}" Margin="10,5" VerticalAlignment="Center" Content="{Binding Title}" Checked="CheckBoxComplete_Checked" Unchecked="CheckBoxComplete_Unchecked"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ScrollViewer>
 
         <AppBar Grid.Row="3">
