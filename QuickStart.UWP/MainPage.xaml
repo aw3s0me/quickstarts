@@ -12,7 +12,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="26"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Background="#00abec">
@@ -42,8 +42,25 @@
             </ListView>
         </ScrollViewer>
 
-        <AppBar Grid.Row="3">
-
+        <AppBar Grid.Row="3" Background="LightGray">
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton Label="Filter">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Filter"/>
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="Sort">
+                    <AppBarButton.Icon>
+                        <SymbolIcon Symbol="Sort"/>
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem>Unsorted</MenuFlyoutItem>
+                            <MenuFlyoutItem>By Title</MenuFlyoutItem>
+                        </MenuFlyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+            </StackPanel>
         </AppBar>
 
         <VisualStateManager.VisualStateGroups>

@@ -61,12 +61,23 @@ namespace QuickStart.UWP
             await store.Update(item);
         }
 
+        /// <summary>
+        /// Event handler that processes the new task when the Save button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SaveTaskButton_Click(object sender, RoutedEventArgs e)
         {
             await store.Create(new TaskItem { Title = NewTaskContent.Text.Trim() });
             NewTaskContent.Text = "";
         }
 
+        /// <summary>
+        /// Event handler that processes the new task when data is entered in the field.
+        /// In this case, it works out if the save button should be clickable or not.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NewTaskContent_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox box = (TextBox)sender;
