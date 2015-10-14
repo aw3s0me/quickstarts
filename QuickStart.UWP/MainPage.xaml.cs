@@ -29,8 +29,9 @@ namespace QuickStart.UWP
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e) {
-          var state = "Normal";
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var state = "Normal";
             if (e.NewSize.Width < 600 || e.NewSize.Height < 600)
             {
                 state = "Narrow";
@@ -39,27 +40,12 @@ namespace QuickStart.UWP
         }
 
         /// <summary>
-        /// Refresh the items in the list.
-        /// </summary>
-        private async Task RefreshItems()
-        {
-            try
-            {
-                ListItems.ItemsSource = (List<TaskItem>)(await store.RetrieveTaskItems());
-            }
-            catch (Exception ex)
-            {
-                await new MessageDialog(ex.Message, "Error loading tasks").ShowAsync();
-            }
-        }
-
-        /// <summary>
         /// Refresh the contents of the list when the page is loaded
         /// </summary>
         /// <param name="e"></param>
-        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            await RefreshItems();
+            ListItems.ItemsSource = store;
         }
 
         /// <summary>
@@ -72,8 +58,19 @@ namespace QuickStart.UWP
             CheckBox checkbox = (CheckBox)sender;
             TaskItem item = checkbox.DataContext as TaskItem;
             item.Completed = (bool)checkbox.IsChecked;
-            await store.UpdateTaskItem(item);
-            await RefreshItems();
+            await store.Update(item);
+        }
+
+        private async void SaveTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            await store.Create(new TaskItem { Title = NewTaskContent.Text.Trim() });
+            NewTaskContent.Text = "";
+        }
+
+        private void NewTaskContent_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox box = (TextBox)sender;
+            SaveTaskButton.IsEnabled = (box.Text.Trim().Length > 0);
         }
     }
 }

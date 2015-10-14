@@ -26,8 +26,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox x:Name="NewTaskContent" Grid.Column="0" Margin="10,4,10,4" PlaceholderText="Enter a new task..."/>
-            <Button x:Name="SaveTaskButton" Grid.Column="1" Margin="10,4,10,4">Save</Button>
+            <TextBox x:Name="NewTaskContent" Grid.Column="0" Margin="10,4,10,4" PlaceholderText="Enter a new task..." TextChanged="NewTaskContent_TextChanged"/>
+            <Button x:Name="SaveTaskButton" Grid.Column="1" Margin="10,4,10,4" IsEnabled="False" Click="SaveTaskButton_Click">Save</Button>
         </Grid>
 
         <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">

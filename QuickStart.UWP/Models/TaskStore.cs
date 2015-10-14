@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 // This file includes non-await code for an async interface
@@ -13,50 +13,36 @@ namespace QuickStart.UWP.Models
     /// Implementation of the TaskStore - this is a basic
     /// CRUD type store.
     /// </summary>
-    class TaskStore
+    class TaskStore : ObservableCollection<TaskItem>
     {
-        private List<TaskItem> _items;
-
         public TaskStore()
         {
-            _items = new List<TaskItem>();
-
-            _items.Add(new TaskItem { Id = "0", Title = "Task 1" });
-            _items.Add(new TaskItem { Id = "1", Title = "Task 2" });
+            Add(new TaskItem { Id = Guid.NewGuid().ToString(), Title = "Task 1" });
+            Add(new TaskItem { Id = Guid.NewGuid().ToString(), Title = "Task 2" });
         }
 
-        public async Task CreateTaskItem(TaskItem item)
+        public async Task Create(TaskItem item)
         {
             item.Id = Guid.NewGuid().ToString();
-            _items.Add(item);
+            this.Add(item);
         }
 
-        public async Task<TaskItem> RetrieveTaskItem(string itemID)
+        public async Task Update(TaskItem item)
         {
-            return _items.Find(t => t.Id.Equals(itemID));
-        }
-
-        public async Task UpdateTaskItem(TaskItem item)
-        {
-            var idx = _items.FindIndex(t => t.Id.Equals(item.Id));
-            if (idx >= 0)
+            for (var idx = 0; idx < this.Count; idx++)
             {
-                _items[idx] = item;
+                if (this.Items[idx].Id.Equals(item.Id))
+                {
+                    this.Items[idx] = item;
+                }
             }
         }
 
-        public async Task DeleteTaskItem(TaskItem item)
+        public async Task Delete(TaskItem item)
         {
-            var idx = _items.FindIndex(t => t.Id.Equals(item.Id));
-            if (idx >= 0)
-            {
-                _items.RemoveAt(idx);
-            }
+            this.Remove(item);
         }
 
-        public async Task<ICollection<TaskItem>> RetrieveTaskItems()
-        {
-            return _items;
-        }
     }
 }
+
