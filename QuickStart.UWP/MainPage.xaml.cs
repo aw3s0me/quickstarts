@@ -1,20 +1,24 @@
 ﻿using QuickStart.UWP.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace QuickStart.UWP
 {
+    enum SortMethod
+    {
+        Unsorted,
+        ByTitle
+    }
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
         private TaskStore store;
+        private bool includeCompleted = false;
+        private SortMethod sortMethod = SortMethod.Unsorted;
 
         public MainPage()
         {
@@ -82,6 +86,31 @@ namespace QuickStart.UWP
         {
             TextBox box = (TextBox)sender;
             SaveTaskButton.IsEnabled = (box.Text.Trim().Length > 0);
+        }
+
+        /// <summary>
+        /// Event Handler that processes the Include Completed checkbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IncludeCompletedCheckbox_Changed(object sender, RoutedEventArgs e)
+        {
+            this.includeCompleted = (bool)((CheckBox)sender).IsChecked;
+            System.Diagnostics.Debug.WriteLine(string.Format("Include Completed = {0}", this.includeCompleted));
+        }
+
+        private void SortMethod_Changed(object sender, RoutedEventArgs e)
+        {
+            var item = (RadioButton)sender;
+            if (item.Name.Equals("SortMethod_Unsorted"))
+            {
+                this.sortMethod = SortMethod.Unsorted;
+            }
+            else if (item.Name.Equals("SortMethod_ByTitle"))
+            {
+                this.sortMethod = SortMethod.ByTitle;
+            }
+            System.Diagnostics.Debug.WriteLine(string.Format("Sort Method = {0}", this.sortMethod));
         }
     }
 }

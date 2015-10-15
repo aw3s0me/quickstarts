@@ -48,16 +48,25 @@
                     <AppBarButton.Icon>
                         <SymbolIcon Symbol="Filter"/>
                     </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <StackPanel>
+                                <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="False" Click="IncludeCompletedCheckbox_Changed">Completed</CheckBox>
+                            </StackPanel>
+                        </Flyout>
+                    </AppBarButton.Flyout>
                 </AppBarButton>
                 <AppBarButton Label="Sort">
                     <AppBarButton.Icon>
                         <SymbolIcon Symbol="Sort"/>
                     </AppBarButton.Icon>
                     <AppBarButton.Flyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem>Unsorted</MenuFlyoutItem>
-                            <MenuFlyoutItem>By Title</MenuFlyoutItem>
-                        </MenuFlyout>
+                        <Flyout>
+                            <StackPanel Orientation="Vertical">
+                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Checked="SortMethod_Changed">Unsorted</RadioButton>
+                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Checked="SortMethod_Changed">By Title</RadioButton>
+                            </StackPanel>
+                        </Flyout>
                     </AppBarButton.Flyout>
                 </AppBarButton>
             </StackPanel>
