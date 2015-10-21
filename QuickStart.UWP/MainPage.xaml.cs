@@ -1,30 +1,35 @@
 ﻿using QuickStart.UWP.Models;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 
 namespace QuickStart.UWP
 {
-    enum SortMethod
-    {
-        Unsorted,
-        ByTitle
-    }
-
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
         private TaskStore store;
-        private bool includeCompleted = false;
-        private SortMethod sortMethod = SortMethod.Unsorted;
 
         public MainPage()
         {
             store = new TaskStore();
             this.InitializeComponent();
             SizeChanged += MainPage_SizeChanged;
+        }
+
+        public void UpdateList()
+        {
+            var tasks = store.AsQueryable<TaskItem>();
+            if (!IncludeCompletedTasks)
+            {
+                tasks = tasks.Where<TaskItem>(task => !task.Completed);
+            }
+            // XX-TODO - this doesn't work when called a second time
+            //tasksList.Source = tasks;
         }
 
         /// <summary>
@@ -49,7 +54,7 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ListItems.ItemsSource = store;
+            UpdateList();
         }
 
         /// <summary>
@@ -63,6 +68,7 @@ namespace QuickStart.UWP
             TaskItem item = checkbox.DataContext as TaskItem;
             item.Completed = (bool)checkbox.IsChecked;
             await store.Update(item);
+            UpdateList();
         }
 
         /// <summary>
@@ -74,6 +80,7 @@ namespace QuickStart.UWP
         {
             await store.Create(new TaskItem { Title = NewTaskContent.Text.Trim() });
             NewTaskContent.Text = "";
+            UpdateList();
         }
 
         /// <summary>
@@ -89,28 +96,41 @@ namespace QuickStart.UWP
         }
 
         /// <summary>
-        /// Event Handler that processes the Include Completed checkbox
+        /// Event Handler when the filter or sort functions are changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void IncludeCompletedCheckbox_Changed(object sender, RoutedEventArgs e)
+        private void UpdateFilterAndSort(object sender, RoutedEventArgs e)
         {
-            this.includeCompleted = (bool)((CheckBox)sender).IsChecked;
-            System.Diagnostics.Debug.WriteLine(string.Format("Include Completed = {0}", this.includeCompleted));
+            UpdateList();
         }
 
-        private void SortMethod_Changed(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Property for reading the state of the filter for including completed tasks
+        /// </summary>
+        private bool IncludeCompletedTasks
         {
-            var item = (RadioButton)sender;
-            if (item.Name.Equals("SortMethod_Unsorted"))
+            get
             {
-                this.sortMethod = SortMethod.Unsorted;
+                return (bool)IncludeCompletedCheckbox.IsChecked;
             }
-            else if (item.Name.Equals("SortMethod_ByTitle"))
-            {
-                this.sortMethod = SortMethod.ByTitle;
-            }
-            System.Diagnostics.Debug.WriteLine(string.Format("Sort Method = {0}", this.sortMethod));
         }
+
+        /// <summary>
+        /// Property for reading the field by which we should sort - returns null if the
+        /// list should be unsorted
+        /// </summary>
+        private string SortMethod
+        {
+            get
+            {
+                if ((bool)SortMethod_ByTitle.IsChecked)
+                {
+                    return "Title";
+                }
+                return null;
+            }
+        }
+
     }
 }

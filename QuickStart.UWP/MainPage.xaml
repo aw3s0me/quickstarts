@@ -31,7 +31,10 @@
         </Grid>
 
         <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-            <ListView x:Name="ListItems" Margin="5,5,0,0">
+            <ScrollViewer.Resources>
+                <CollectionViewSource x:Name="tasksList"/>
+            </ScrollViewer.Resources>
+            <ListView x:Name="ListItems" Margin="5,5,0,0" ItemsSource="{Binding Source={StaticResource tasksList}}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -51,7 +54,7 @@
                     <AppBarButton.Flyout>
                         <Flyout>
                             <StackPanel>
-                                <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="False" Click="IncludeCompletedCheckbox_Changed">Completed</CheckBox>
+                                <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="True" Click="UpdateFilterAndSort">Completed</CheckBox>
                             </StackPanel>
                         </Flyout>
                     </AppBarButton.Flyout>
@@ -63,8 +66,8 @@
                     <AppBarButton.Flyout>
                         <Flyout>
                             <StackPanel Orientation="Vertical">
-                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Checked="SortMethod_Changed">Unsorted</RadioButton>
-                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Checked="SortMethod_Changed">By Title</RadioButton>
+                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Click="UpdateFilterAndSort">Unsorted</RadioButton>
+                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Click="UpdateFilterAndSort">By Title</RadioButton>
                             </StackPanel>
                         </Flyout>
                     </AppBarButton.Flyout>
