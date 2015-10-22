@@ -12,18 +12,20 @@ namespace QuickStart.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private FilteredTaskStore store;
+        private TaskStore store;
+        private FilteredTaskStore filteredStore;
 
         public MainPage()
         {
-            store = new FilteredTaskStore(new TaskStore());
+            store = new TaskStore();
+            filteredStore = new FilteredTaskStore(store);
             this.InitializeComponent();
 
             SizeChanged += MainPage_SizeChanged;
             tasksListView.ItemsSource = store;
 
             // Set up the defaults for filtering by the store definition
-            IncludeCompletedCheckbox.IsChecked = store.IncludeCompletedItems;
+            IncludeCompletedCheckbox.IsChecked = filteredStore.IncludeCompletedItems;
         }
 
         /// <summary>
@@ -48,7 +50,7 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            store.RefreshView();
+            filteredStore.RefreshView();
         }
 
         /// <summary>
@@ -61,7 +63,7 @@ namespace QuickStart.UWP
             CheckBox checkbox = (CheckBox)sender;
             TaskItem item = checkbox.DataContext as TaskItem;
             item.Completed = (bool)checkbox.IsChecked;
-            await store.Update(item);
+            await filteredStore.Update(item);
         }
 
         /// <summary>
@@ -71,7 +73,7 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         private async void SaveTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            await store.Create(new TaskItem { Title = NewTaskContent.Text.Trim() });
+            await filteredStore.Create(new TaskItem { Title = NewTaskContent.Text.Trim() });
             NewTaskContent.Text = "";
         }
 
@@ -96,13 +98,29 @@ namespace QuickStart.UWP
         private void FilterCompletedTasks_Clicked(object sender, RoutedEventArgs e)
         {
             var includeCompleted = (bool)((CheckBox)sender).IsChecked;
-            store.IncludeCompletedItems = includeCompleted;
+            filteredStore.IncludeCompletedItems = includeCompleted;
         }
 
         private void SortTasks_Clicked(object sender, RoutedEventArgs e)
         {
             var b = ((RadioButton)sender).Name.Replace("SortMethod_","");
-            store.SortMethod = (b.Equals("Unsorted")) ? null : b;
+            filteredStore.SortMethod = (b.Equals("Unsorted")) ? null : b;
+        }
+
+        /// <summary>
+        /// Event Handler, called when the Sync button (which could be a Login or Sync)
+        /// is called.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private bool isAuthenticated = false;
+        private void LoginSync_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (!isAuthenticated)
+            {
+                loginSyncButton.Label = "Sync";
+                isAuthenticated = true;
+            }
         }
     }
 }

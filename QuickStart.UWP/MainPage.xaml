@@ -43,33 +43,42 @@
         </ScrollViewer>
 
         <AppBar Grid.Row="3" Background="LightGray">
-            <StackPanel Orientation="Horizontal">
-                <AppBarButton Label="Filter">
-                    <AppBarButton.Icon>
-                        <SymbolIcon Symbol="Filter"/>
-                    </AppBarButton.Icon>
-                    <AppBarButton.Flyout>
-                        <Flyout>
-                            <StackPanel>
-                                <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="True" Click="FilterCompletedTasks_Clicked">Completed</CheckBox>
-                            </StackPanel>
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
-                <AppBarButton Label="Sort">
-                    <AppBarButton.Icon>
-                        <SymbolIcon Symbol="Sort"/>
-                    </AppBarButton.Icon>
-                    <AppBarButton.Flyout>
-                        <Flyout>
-                            <StackPanel Orientation="Vertical">
-                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Click="SortTasks_Clicked">Unsorted</RadioButton>
-                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Click="SortTasks_Clicked">By Title</RadioButton>
-                            </StackPanel>
-                        </Flyout>
-                    </AppBarButton.Flyout>
-                </AppBarButton>
-            </StackPanel>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton Label="Filter">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="Filter"/>
+                        </AppBarButton.Icon>
+                        <AppBarButton.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="True" Click="FilterCompletedTasks_Clicked">Completed</CheckBox>
+                                </StackPanel>
+                            </Flyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                    <AppBarButton Label="Sort">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="Sort"/>
+                        </AppBarButton.Icon>
+                        <AppBarButton.Flyout>
+                            <Flyout>
+                                <StackPanel Orientation="Vertical">
+                                    <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Click="SortTasks_Clicked">Unsorted</RadioButton>
+                                    <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Click="SortTasks_Clicked">By Title</RadioButton>
+                                </StackPanel>
+                            </Flyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <AppBarButton x:Name="loginSyncButton" Label="Login" Click="LoginSync_Clicked">
+                        <AppBarButton.Icon>
+                            <SymbolIcon Symbol="Sync"/>
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                </StackPanel>
+            </Grid>
         </AppBar>
 
         <VisualStateManager.VisualStateGroups>
