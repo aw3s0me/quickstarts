@@ -63,8 +63,8 @@
                     <AppBarButton.Flyout>
                         <Flyout>
                             <StackPanel Orientation="Vertical">
-                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True">Unsorted</RadioButton>
-                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions">By Title</RadioButton>
+                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Click="SortTasks_Clicked">Unsorted</RadioButton>
+                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Click="SortTasks_Clicked">By Title</RadioButton>
                             </StackPanel>
                         </Flyout>
                     </AppBarButton.Flyout>

@@ -98,5 +98,11 @@ namespace QuickStart.UWP
             var includeCompleted = (bool)((CheckBox)sender).IsChecked;
             store.IncludeCompletedItems = includeCompleted;
         }
+
+        private void SortTasks_Clicked(object sender, RoutedEventArgs e)
+        {
+            var b = ((RadioButton)sender).Name.Replace("SortMethod_","");
+            store.SortMethod = (b.Equals("Unsorted")) ? null : b;
+        }
     }
 }

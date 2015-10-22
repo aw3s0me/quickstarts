@@ -196,18 +196,22 @@ namespace QuickStart.UWP.Models
         {
             var oldItems = _view.ToArray();
 
-            var tasks = _store.Where<TaskItem>(task => IncludeCompletedItems || !task.Completed);
+            var tasks = _store.Where(task => IncludeCompletedItems || !task.Completed);
+            if (SortMethod != null)
+            {
+                if (SortMethod.Equals("ByTitle"))
+                {
+                    tasks = tasks.OrderBy(t => t.Title);
+                }
+            }
 
-            System.Diagnostics.Debug.WriteLine("In RefreshView");
             _view.Clear();
             _view.AddRange(tasks);
             if (CollectionChanged != null)
             {
-                System.Diagnostics.Debug.WriteLine("Emitting Collection Changed");
                 // Call the event handler for the updated list.
                 CollectionChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
-
         }
 
     }
