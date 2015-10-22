@@ -31,10 +31,7 @@
         </Grid>
 
         <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Auto">
-            <ScrollViewer.Resources>
-                <CollectionViewSource x:Name="tasksList"/>
-            </ScrollViewer.Resources>
-            <ListView x:Name="ListItems" Margin="5,5,0,0" ItemsSource="{Binding Source={StaticResource tasksList}}">
+            <ListView x:Name="tasksListView" Margin="5,5,0,0" SelectionMode="None" IsItemClickEnabled="False">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -54,7 +51,7 @@
                     <AppBarButton.Flyout>
                         <Flyout>
                             <StackPanel>
-                                <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="True" Click="UpdateFilterAndSort">Completed</CheckBox>
+                                <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="True" Click="FilterCompletedTasks_Clicked">Completed</CheckBox>
                             </StackPanel>
                         </Flyout>
                     </AppBarButton.Flyout>
@@ -66,8 +63,8 @@
                     <AppBarButton.Flyout>
                         <Flyout>
                             <StackPanel Orientation="Vertical">
-                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Click="UpdateFilterAndSort">Unsorted</RadioButton>
-                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Click="UpdateFilterAndSort">By Title</RadioButton>
+                                <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True">Unsorted</RadioButton>
+                                <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions">By Title</RadioButton>
                             </StackPanel>
                         </Flyout>
                     </AppBarButton.Flyout>

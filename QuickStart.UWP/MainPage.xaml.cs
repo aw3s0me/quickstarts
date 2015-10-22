@@ -12,24 +12,18 @@ namespace QuickStart.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private TaskStore store;
+        private FilteredTaskStore store;
 
         public MainPage()
         {
-            store = new TaskStore();
+            store = new FilteredTaskStore(new TaskStore());
             this.InitializeComponent();
-            SizeChanged += MainPage_SizeChanged;
-        }
 
-        public void UpdateList()
-        {
-            var tasks = store.AsQueryable<TaskItem>();
-            if (!IncludeCompletedTasks)
-            {
-                tasks = tasks.Where<TaskItem>(task => !task.Completed);
-            }
-            // XX-TODO - this doesn't work when called a second time
-            //tasksList.Source = tasks;
+            SizeChanged += MainPage_SizeChanged;
+            tasksListView.ItemsSource = store;
+
+            // Set up the defaults for filtering by the store definition
+            IncludeCompletedCheckbox.IsChecked = store.IncludeCompletedItems;
         }
 
         /// <summary>
@@ -54,7 +48,7 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            UpdateList();
+            store.RefreshView();
         }
 
         /// <summary>
@@ -68,7 +62,6 @@ namespace QuickStart.UWP
             TaskItem item = checkbox.DataContext as TaskItem;
             item.Completed = (bool)checkbox.IsChecked;
             await store.Update(item);
-            UpdateList();
         }
 
         /// <summary>
@@ -80,7 +73,6 @@ namespace QuickStart.UWP
         {
             await store.Create(new TaskItem { Title = NewTaskContent.Text.Trim() });
             NewTaskContent.Text = "";
-            UpdateList();
         }
 
         /// <summary>
@@ -96,41 +88,15 @@ namespace QuickStart.UWP
         }
 
         /// <summary>
-        /// Event Handler when the filter or sort functions are changed
+        /// Event handler that processes the filter options - only one right now for the
+        /// Include Completed Tasks
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void UpdateFilterAndSort(object sender, RoutedEventArgs e)
+        private void FilterCompletedTasks_Clicked(object sender, RoutedEventArgs e)
         {
-            UpdateList();
+            var includeCompleted = (bool)((CheckBox)sender).IsChecked;
+            store.IncludeCompletedItems = includeCompleted;
         }
-
-        /// <summary>
-        /// Property for reading the state of the filter for including completed tasks
-        /// </summary>
-        private bool IncludeCompletedTasks
-        {
-            get
-            {
-                return (bool)IncludeCompletedCheckbox.IsChecked;
-            }
-        }
-
-        /// <summary>
-        /// Property for reading the field by which we should sort - returns null if the
-        /// list should be unsorted
-        /// </summary>
-        private string SortMethod
-        {
-            get
-            {
-                if ((bool)SortMethod_ByTitle.IsChecked)
-                {
-                    return "Title";
-                }
-                return null;
-            }
-        }
-
     }
 }
