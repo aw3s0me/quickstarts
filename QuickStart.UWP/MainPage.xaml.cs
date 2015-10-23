@@ -1,8 +1,9 @@
-﻿using QuickStart.UWP.Models;
-using System.Linq;
+﻿using Microsoft.WindowsAzure.MobileServices;
+using QuickStart.UWP.Models;
+using System;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 
 namespace QuickStart.UWP
@@ -14,6 +15,7 @@ namespace QuickStart.UWP
     {
         private TaskStore store;
         private FilteredTaskStore filteredStore;
+        private MobileServiceUser user = null;
 
         public MainPage()
         {
@@ -113,13 +115,28 @@ namespace QuickStart.UWP
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private bool isAuthenticated = false;
-        private void LoginSync_Clicked(object sender, RoutedEventArgs e)
+        private async void LoginSync_Clicked(object sender, RoutedEventArgs e)
         {
-            if (!isAuthenticated)
+            if (user == null)
             {
-                loginSyncButton.Label = "Sync";
-                isAuthenticated = true;
+                try
+                {
+                    user = await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
+                    System.Diagnostics.Debug.WriteLine("User is logged in");
+                }
+                catch (MobileServiceInvalidOperationException ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(String.Format("Mobile Services Error: {0}", ex.Message));
+                    user = null;
+                    var dialog = new MessageDialog(ex.Message);
+                    dialog.Commands.Add(new UICommand("OK"));
+                    await dialog.ShowAsync();
+                }
+            }
+            else
+            {
+                // Sync Action
+                System.Diagnostics.Debug.WriteLine("MobileServices Sync");
             }
         }
     }
