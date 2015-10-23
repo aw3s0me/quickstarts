@@ -14,7 +14,11 @@ namespace QuickStart.UWP
     sealed partial class App : Application
     {
         // Reference to the Mobile Service Client connection
-        public static MobileServiceClient MobileService = new MobileServiceClient("https://ahall-mobile-nodebackend.azurewebsites.net");
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://ahall-mobile-nodebackend.azurewebsites.net", // My Mobile Backend
+            "https://ahall-mobile-nodebackend76b3a38a6e13467e89f514e427f2fda8.azurewebsites.net", // My Gateway URI
+            "" // Application Key
+        );
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
