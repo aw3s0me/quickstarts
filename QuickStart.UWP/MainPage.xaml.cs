@@ -15,7 +15,6 @@ namespace QuickStart.UWP
     {
         private TaskStore store;
         private FilteredTaskStore filteredStore;
-        private MobileServiceUser user = null;
 
         public MainPage()
         {
@@ -24,7 +23,7 @@ namespace QuickStart.UWP
             this.InitializeComponent();
 
             SizeChanged += MainPage_SizeChanged;
-            tasksListView.ItemsSource = store;
+            tasksListView.ItemsSource = filteredStore;
 
             // Set up the defaults for filtering by the store definition
             IncludeCompletedCheckbox.IsChecked = filteredStore.IncludeCompletedItems;
@@ -117,18 +116,18 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         private async void LoginSync_Clicked(object sender, RoutedEventArgs e)
         {
-            if (user == null)
+            if (store.User == null)
             {
                 try
                 {
-                    user = await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
-                    System.Diagnostics.Debug.WriteLine(String.Format("User is logged in - username is {0}", user.UserId));
+                    store.User = await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
+                    System.Diagnostics.Debug.WriteLine(String.Format("User is logged in - username is {0}", store.User.UserId));
                     loginSyncButton.Label = "Sync";
                 }
                 catch (MobileServiceInvalidOperationException ex)
                 {
                     System.Diagnostics.Debug.WriteLine(String.Format("Mobile Services Error: {0}", ex.Message));
-                    user = null;
+                    store.User = null;
                     var dialog = new MessageDialog(ex.Message);
                     dialog.Commands.Add(new UICommand("OK"));
                     await dialog.ShowAsync();
