@@ -2,6 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 
 // This file includes non-await code for an async interface
 // it will execute synchronously - we are ok with that right
@@ -16,7 +17,7 @@ namespace QuickStart.UWP.Models
     /// </summary>
     class TaskStore : ObservableCollection<TaskItem>
     {
-        private IMobileServiceTable<TaskItem> todoTable = App.MobileService.GetTable<TaskItem>();
+        private IMobileServiceTable<TaskItem> tableController = App.MobileService.GetTable<TaskItem>();
 
         public TaskStore()
         {
@@ -30,25 +31,59 @@ namespace QuickStart.UWP.Models
         public async Task Create(TaskItem item)
         {
             item.Id = Guid.NewGuid().ToString();
-            this.Add(item);
+            Add(item);
+            if (User != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Inserting item into remote table");
+                await tableController.InsertAsync(item);
+            }
         }
 
         public async Task Update(TaskItem item)
         {
-            for (var idx = 0; idx < this.Count; idx++)
+            for (var idx = 0; idx < Count; idx++)
             {
-                if (this.Items[idx].Id.Equals(item.Id))
+                if (Items[idx].Id.Equals(item.Id))
                 {
-                    this.Items[idx] = item;
+                    Items[idx] = item;
                 }
+            }
+            if (User != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Updating item in remote table");
+                await tableController.UpdateAsync(item);
             }
         }
 
         public async Task Delete(TaskItem item)
         {
-            this.Remove(item);
+            Remove(item);
+            if (User != null)
+            {
+                System.Diagnostics.Debug.WriteLine("Deleting item in remote table");
+                await tableController.DeleteAsync(item);
+            }
         }
 
+        public async Task Refresh()
+        {
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("Refreshing from the remote table");
+                var items = await tableController.ToCollectionAsync();
+                Clear();
+                var e = items.GetEnumerator();
+                while (e.MoveNext())
+                {
+                    Add(e.Current);
+                }
+            }
+            catch (MobileServiceInvalidOperationException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(String.Format("Cannot read from remote table: {0}", ex.Message));
+                await new MessageDialog(ex.Message, "Error loading itmes").ShowAsync();
+            }
+        }
     }
 }
 

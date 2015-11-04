@@ -187,6 +187,16 @@ namespace QuickStart.UWP.Models
             await _store.Delete(item);
             RefreshView();
         }
+
+        /// <summary>
+        /// Refresh the store
+        /// </summary>
+        /// <returns></returns>
+        public async Task Refresh()
+        {
+            await _store.Refresh();
+            RefreshView();
+        }
         #endregion
 
         /// <summary>

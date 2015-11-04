@@ -123,6 +123,8 @@ namespace QuickStart.UWP
                     store.User = await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
                     System.Diagnostics.Debug.WriteLine(String.Format("User is logged in - username is {0}", store.User.UserId));
                     loginSyncButton.Label = "Sync";
+                    // Refresh from the backend store
+                    await filteredStore.Refresh();
                 }
                 catch (MobileServiceInvalidOperationException ex)
                 {
@@ -135,7 +137,7 @@ namespace QuickStart.UWP
             }
             else
             {
-                // Sync Action
+                await filteredStore.Refresh();
                 System.Diagnostics.Debug.WriteLine("MobileServices Sync");
             }
         }
