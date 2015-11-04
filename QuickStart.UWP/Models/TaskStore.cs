@@ -4,11 +4,10 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 
-// This file includes non-await code for an async interface
-// it will execute synchronously - we are ok with that right
-// now as the whole system will be replaced with an async
-// version later on
-#pragma warning disable 1998
+// Offline Sync Requirements
+using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
+using Microsoft.WindowsAzure.MobileServices.Sync;
+
 namespace QuickStart.UWP.Models
 {
     /// <summary>
@@ -17,7 +16,7 @@ namespace QuickStart.UWP.Models
     /// </summary>
     class TaskStore : ObservableCollection<TaskItem>
     {
-        private IMobileServiceTable<TaskItem> tableController = App.MobileService.GetTable<TaskItem>();
+        private IMobileServiceSyncTable<TaskItem> tableController = App.MobileService.GetSyncTable<TaskItem>();
 
         public TaskStore()
         {
@@ -28,6 +27,21 @@ namespace QuickStart.UWP.Models
 
         public MobileServiceUser User { get; set; }
 
+        private async Task SynchronizeStoreAsync()
+        {
+            if (!App.MobileService.SyncContext.IsInitialized)
+            {
+                System.Diagnostics.Debug.WriteLine("Creating local cache context");
+                var store = new MobileServiceSQLiteStore("taskstore.db");
+                store.DefineTable<TaskItem>();
+                await App.MobileService.SyncContext.InitializeAsync(store);
+            }
+            System.Diagnostics.Debug.WriteLine("Pushing changes to remote server");
+            await App.MobileService.SyncContext.PushAsync();
+            System.Diagnostics.Debug.WriteLine("Pulling changes from remote server");
+            await tableController.PullAsync("taskItems", tableController.CreateQuery());
+        }
+
         public async Task Create(TaskItem item)
         {
             item.Id = Guid.NewGuid().ToString();
@@ -36,6 +50,8 @@ namespace QuickStart.UWP.Models
             {
                 System.Diagnostics.Debug.WriteLine("Inserting item into remote table");
                 await tableController.InsertAsync(item);
+                await SynchronizeStoreAsync();
+                System.Diagnostics.Debug.WriteLine("Inserted item into remote table");
             }
         }
 
@@ -52,6 +68,8 @@ namespace QuickStart.UWP.Models
             {
                 System.Diagnostics.Debug.WriteLine("Updating item in remote table");
                 await tableController.UpdateAsync(item);
+                await SynchronizeStoreAsync();
+                System.Diagnostics.Debug.WriteLine("Updated item in remote table");
             }
         }
 
@@ -62,6 +80,8 @@ namespace QuickStart.UWP.Models
             {
                 System.Diagnostics.Debug.WriteLine("Deleting item in remote table");
                 await tableController.DeleteAsync(item);
+                await SynchronizeStoreAsync();
+                System.Diagnostics.Debug.WriteLine("Deleted item in remote table");
             }
         }
 
@@ -69,7 +89,9 @@ namespace QuickStart.UWP.Models
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine("Refreshing from the remote table");
+                System.Diagnostics.Debug.WriteLine("Refreshing local cache from the remote table");
+                await SynchronizeStoreAsync();
+                System.Diagnostics.Debug.WriteLine("Refreshing local data structure from local cache");
                 var items = await tableController.ToCollectionAsync();
                 Clear();
                 var e = items.GetEnumerator();

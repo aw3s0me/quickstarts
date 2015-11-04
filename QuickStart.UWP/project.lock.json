@@ -266,6 +266,14 @@
           "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
+      "SQLitePCL/3.8.7.2": {
+        "compile": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        }
+      },
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -1615,6 +1623,21 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )",
+          "Newtonsoft.Json": "[6.0.4, )",
+          "SQLitePCL": "[3.8.7.2, 3.8.8)",
+          "WindowsAzure.MobileServices": "[2.0.0-beta, 2.0.0)"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -1922,6 +1945,14 @@
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "SQLitePCL/3.8.7.2": {
+        "compile": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/SQLitePCL.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -3320,6 +3351,21 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )",
+          "Newtonsoft.Json": "[6.0.4, )",
+          "SQLitePCL": "[3.8.7.2, 3.8.8)",
+          "WindowsAzure.MobileServices": "[2.0.0-beta, 2.0.0)"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
@@ -3613,6 +3659,14 @@
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "SQLitePCL/3.8.7.2": {
+        "compile": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/SQLitePCL.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -4996,6 +5050,21 @@
         "runtime": {
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
+      },
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )",
+          "Newtonsoft.Json": "[6.0.4, )",
+          "SQLitePCL": "[3.8.7.2, 3.8.8)",
+          "WindowsAzure.MobileServices": "[2.0.0-beta, 2.0.0)"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
         }
       }
     },
@@ -5311,6 +5380,14 @@
           "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
+      "SQLitePCL/3.8.7.2": {
+        "compile": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        }
+      },
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -6707,6 +6784,21 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )",
+          "Newtonsoft.Json": "[6.0.4, )",
+          "SQLitePCL": "[3.8.7.2, 3.8.8)",
+          "WindowsAzure.MobileServices": "[2.0.0-beta, 2.0.0)"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
@@ -7000,6 +7092,14 @@
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "SQLitePCL/3.8.7.2": {
+        "compile": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/SQLitePCL.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -8383,6 +8483,21 @@
         "runtime": {
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
+      },
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )",
+          "Newtonsoft.Json": "[6.0.4, )",
+          "SQLitePCL": "[3.8.7.2, 3.8.8)",
+          "WindowsAzure.MobileServices": "[2.0.0-beta, 2.0.0)"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
         }
       }
     },
@@ -8698,6 +8813,14 @@
           "lib/netcore45/Newtonsoft.Json.dll": {}
         }
       },
+      "SQLitePCL/3.8.7.2": {
+        "compile": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        }
+      },
       "System.AppContext/4.0.0": {
         "dependencies": {
           "System.Collections": "[4.0.0, )",
@@ -10094,6 +10217,21 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
+      },
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )",
+          "Newtonsoft.Json": "[6.0.4, )",
+          "SQLitePCL": "[3.8.7.2, 3.8.8)",
+          "WindowsAzure.MobileServices": "[2.0.0-beta, 2.0.0)"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
@@ -10387,6 +10525,14 @@
         },
         "runtime": {
           "lib/netcore45/Newtonsoft.Json.dll": {}
+        }
+      },
+      "SQLitePCL/3.8.7.2": {
+        "compile": {
+          "lib/netcore451/SQLitePCL.dll": {}
+        },
+        "runtime": {
+          "lib/netcore451/SQLitePCL.dll": {}
         }
       },
       "System.AppContext/4.0.0": {
@@ -11770,6 +11916,21 @@
         "runtime": {
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.dll": {},
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
+        }
+      },
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+        "dependencies": {
+          "Microsoft.Bcl": "[1.1.9, )",
+          "Microsoft.Net.Http": "[2.2.28, )",
+          "Newtonsoft.Json": "[6.0.4, )",
+          "SQLitePCL": "[3.8.7.2, 3.8.8)",
+          "WindowsAzure.MobileServices": "[2.0.0-beta, 2.0.0)"
+        },
+        "compile": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
+        },
+        "runtime": {
+          "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll": {}
         }
       }
     }
@@ -12688,6 +12849,84 @@
         "Newtonsoft.Json.nuspec",
         "package/services/metadata/core-properties/87a0a4e28d50417ea282e20f81bc6477.psmdcp",
         "tools/install.ps1"
+      ]
+    },
+    "SQLitePCL/3.8.7.2": {
+      "sha512": "Vi2/IJKPV4Web9GX+wn42foALVjFM68uTEoIOY6Ir8keF5OkniMB/iXCg3N2GWgj5ex7dCAsJmhv1sX84Fj9dQ==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "build/MonoAndroid/_._",
+        "build/MonoTouch/_._",
+        "build/net45/SQLitePCL.Ext.dll",
+        "build/net45/SQLitePCL.props",
+        "build/net45/SQLitePCL.targets",
+        "build/netcore45/SQLitePCL.Ext.dll",
+        "build/netcore45/SQLitePCL.Ext.pri",
+        "build/netcore45/SQLitePCL.props",
+        "build/netcore45/SQLitePCL.targets",
+        "build/netcore451/SQLitePCL.Ext.dll",
+        "build/netcore451/SQLitePCL.Ext.pri",
+        "build/netcore451/SQLitePCL.props",
+        "build/netcore451/SQLitePCL.targets",
+        "build/portable-net45+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/_._",
+        "build/wp8/ARM/SQLitePCL.Ext.dll",
+        "build/wp8/ARM/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.dll",
+        "build/wp8/ARM/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.winmd",
+        "build/wp8/SQLitePCL.props",
+        "build/wp8/SQLitePCL.targets",
+        "build/wp8/x86/SQLitePCL.Ext.dll",
+        "build/wp8/x86/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.dll",
+        "build/wp8/x86/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.winmd",
+        "build/wp81/ARM/SQLitePCL.Ext.dll",
+        "build/wp81/ARM/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.dll",
+        "build/wp81/ARM/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.winmd",
+        "build/wp81/SQLitePCL.props",
+        "build/wp81/SQLitePCL.targets",
+        "build/wp81/x86/SQLitePCL.Ext.dll",
+        "build/wp81/x86/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.dll",
+        "build/wp81/x86/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.winmd",
+        "build/wpa81/SQLitePCL.Ext.dll",
+        "build/wpa81/SQLitePCL.Ext.pri",
+        "build/wpa81/SQLitePCL.props",
+        "build/wpa81/SQLitePCL.targets",
+        "build/Xamarin.iOS10/_._",
+        "lib/MonoAndroid/SQLitePCL.dll",
+        "lib/MonoAndroid/SQLitePCL.Ext.dll",
+        "lib/MonoTouch/SQLitePCL.dll",
+        "lib/MonoTouch/SQLitePCL.Ext.dll",
+        "lib/net45/SQLitePCL.dll",
+        "lib/netcore45/SQLitePCL.dll",
+        "lib/netcore451/SQLitePCL.dll",
+        "lib/portable-net45+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/SQLitePCL.dll",
+        "lib/wp8/SQLitePCL.dll",
+        "lib/wp8/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.dll",
+        "lib/wp8/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.winmd",
+        "lib/wp81/SQLitePCL.dll",
+        "lib/wp81/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.dll",
+        "lib/wp81/SQLitePCL.Ext.WindowsPhone8.RuntimeProxy.winmd",
+        "lib/wpa81/SQLitePCL.dll",
+        "lib/Xamarin.iOS10/SQLitePCL.dll",
+        "lib/Xamarin.iOS10/SQLitePCL.Ext.dll",
+        "package/services/metadata/core-properties/48afaf9ee7b44e0390231e866e2b476c.psmdcp",
+        "readme.txt",
+        "SQLitePCL.nuspec",
+        "tools/MonoAndroid/install.ps1",
+        "tools/MonoTouch/install.ps1",
+        "tools/net45/install.ps1",
+        "tools/netcore45/install.ps1",
+        "tools/netcore45/uninstall.ps1",
+        "tools/netcore451/install.ps1",
+        "tools/netcore451/uninstall.ps1",
+        "tools/portable-net45+sl50+win+wpa81+wp80+MonoAndroid10+xamarinios10+MonoTouch10/install.ps1",
+        "tools/wp8/install.ps1",
+        "tools/wp8/uninstall.ps1",
+        "tools/wp81/install.ps1",
+        "tools/wp81/uninstall.ps1",
+        "tools/wpa81/install.ps1",
+        "tools/wpa81/uninstall.ps1",
+        "tools/Xamarin.iOS10/install.ps1"
       ]
     },
     "System.AppContext/4.0.0": {
@@ -15427,6 +15666,17 @@
         "package/services/metadata/core-properties/05570735181d45f09a1a3deebfd09397.psmdcp",
         "WindowsAzure.MobileServices.nuspec"
       ]
+    },
+    "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "sha512": "Tr2HcrGugI4iFzygSDebAlNRp2+ngPR++2n749Q76DwItzcXnGVzJ1L2458G4OmYQ36bz4+GwTbeaFoxE9Kw/g==",
+      "type": "Package",
+      "files": [
+        "[Content_Types].xml",
+        "_rels/.rels",
+        "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll",
+        "package/services/metadata/core-properties/c114f4693bf94095802701145a48a9ae.psmdcp",
+        "WindowsAzure.MobileServices.SQLiteStore.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -15435,7 +15685,8 @@
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "WindowsAzure.MobileServices >= 2.0.0-beta-2"
+      "WindowsAzure.MobileServices >= 2.0.0-beta-2",
+      "WindowsAzure.MobileServices.SQLiteStore >= 2.0.0-beta"
     ],
     "UAP,Version=v10.0": []
   }
