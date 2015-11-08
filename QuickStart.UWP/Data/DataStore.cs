@@ -42,13 +42,14 @@ namespace QuickStart.UWP.Data
         /// Provide an async authentication mechanism
         /// </summary>
         /// <returns>Task (async)</returns>
-        private async Task AuthenticateAsync()
+        public async Task AuthenticateAsync()
         {
             if (!IsAuthenticated)
             {
                 try
                 {
                     User = await CloudService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
+                    Debug.WriteLine("AUTH:{0}:{1}", User.UserId, User.MobileServiceAuthenticationToken);
                 }
                 catch (MobileServiceInvalidOperationException ex)
                 {

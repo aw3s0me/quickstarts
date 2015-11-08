@@ -52,7 +52,8 @@
                         <AppBarButton.Flyout>
                             <Flyout>
                                 <StackPanel>
-                                    <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="True" Click="FilterCompletedTasks_Clicked">Completed</CheckBox>
+                                    <!-- XXX-TODO: Implement Click Handler -->
+                                    <CheckBox x:Name="IncludeCompletedCheckbox" IsChecked="True">Completed</CheckBox>
                                 </StackPanel>
                             </Flyout>
                         </AppBarButton.Flyout>
@@ -64,8 +65,9 @@
                         <AppBarButton.Flyout>
                             <Flyout>
                                 <StackPanel Orientation="Vertical">
-                                    <RadioButton x:Name="SortMethod_Unsorted" GroupName="SortOptions" IsChecked="True" Click="SortTasks_Clicked">Unsorted</RadioButton>
-                                    <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions" Click="SortTasks_Clicked">By Title</RadioButton>
+                                    <!-- XXX-TODO: Implement Click Handlers -->
+                                    <RadioButton x:Name="SortMethod_ById" GroupName="SortOptions" IsChecked="True">Unsorted</RadioButton>
+                                    <RadioButton x:Name="SortMethod_ByTitle" GroupName="SortOptions">By Title</RadioButton>
                                 </StackPanel>
                             </Flyout>
                         </AppBarButton.Flyout>

@@ -1,4 +1,4 @@
-﻿using Microsoft.WindowsAzure.MobileServices;
+﻿using QuickStart.UWP.Data;
 using QuickStart.UWP.Models;
 using System;
 using Windows.UI.Popups;
@@ -13,20 +13,16 @@ namespace QuickStart.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private TaskStore store;
-        private FilteredTaskStore filteredStore;
+        private DataTable<TaskItem> taskTable = new DataTable<TaskItem>();
 
         public MainPage()
         {
-            store = new TaskStore();
-            filteredStore = new FilteredTaskStore(store);
             this.InitializeComponent();
 
             SizeChanged += MainPage_SizeChanged;
-            tasksListView.ItemsSource = filteredStore;
 
-            // Set up the defaults for filtering by the store definition
-            IncludeCompletedCheckbox.IsChecked = filteredStore.IncludeCompletedItems;
+            // Associate the task table with the items-source
+            tasksListView.ItemsSource = taskTable;
         }
 
         /// <summary>
@@ -49,9 +45,9 @@ namespace QuickStart.UWP
         /// Refresh the contents of the list when the page is loaded
         /// </summary>
         /// <param name="e"></param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            filteredStore.RefreshView();
+            await taskTable.RefreshAsync();
         }
 
         /// <summary>
@@ -64,7 +60,8 @@ namespace QuickStart.UWP
             CheckBox checkbox = (CheckBox)sender;
             TaskItem item = checkbox.DataContext as TaskItem;
             item.Completed = (bool)checkbox.IsChecked;
-            await filteredStore.Update(item);
+
+            await taskTable.UpdateAsync(item);
         }
 
         /// <summary>
@@ -74,7 +71,11 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         private async void SaveTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            await filteredStore.Create(new TaskItem { Title = NewTaskContent.Text.Trim() });
+            await taskTable.CreateAsync(new TaskItem {
+                Id = Guid.NewGuid().ToString(),
+                Title = NewTaskContent.Text.Trim()
+            });
+
             NewTaskContent.Text = "";
         }
 
@@ -91,24 +92,6 @@ namespace QuickStart.UWP
         }
 
         /// <summary>
-        /// Event handler that processes the filter options - only one right now for the
-        /// Include Completed Tasks
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void FilterCompletedTasks_Clicked(object sender, RoutedEventArgs e)
-        {
-            var includeCompleted = (bool)((CheckBox)sender).IsChecked;
-            filteredStore.IncludeCompletedItems = includeCompleted;
-        }
-
-        private void SortTasks_Clicked(object sender, RoutedEventArgs e)
-        {
-            var b = ((RadioButton)sender).Name.Replace("SortMethod_","");
-            filteredStore.SortMethod = (b.Equals("Unsorted")) ? null : b;
-        }
-
-        /// <summary>
         /// Event Handler, called when the Sync button (which could be a Login or Sync)
         /// is called.
         /// </summary>
@@ -116,30 +99,29 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         private async void LoginSync_Clicked(object sender, RoutedEventArgs e)
         {
-            if (store.User == null)
+            var dataStore = await DataStore.GetInstance();
+
+            if (!dataStore.IsAuthenticated)
             {
                 try
                 {
-                    store.User = await App.MobileService.LoginAsync(MobileServiceAuthenticationProvider.MicrosoftAccount);
-                    System.Diagnostics.Debug.WriteLine(String.Format("User is logged in - username is {0}", store.User.UserId));
-                    loginSyncButton.Label = "Sync";
-                    // Refresh from the backend store
-                    await filteredStore.Refresh();
+                    await dataStore.AuthenticateAsync();
+                    if (dataStore.IsAuthenticated)
+                    {
+                        loginSyncButton.Label = "Sync";
+                    }
                 }
-                catch (MobileServiceInvalidOperationException ex)
+                catch (LoginDeniedException)
                 {
-                    System.Diagnostics.Debug.WriteLine(String.Format("Mobile Services Error: {0}", ex.Message));
-                    store.User = null;
-                    var dialog = new MessageDialog(ex.Message);
+                    var dialog = new MessageDialog("Login Failed");
                     dialog.Commands.Add(new UICommand("OK"));
                     await dialog.ShowAsync();
+                    return;
                 }
             }
-            else
-            {
-                await filteredStore.Refresh();
-                System.Diagnostics.Debug.WriteLine("MobileServices Sync");
-            }
+
+            // We are authenticated
+            await taskTable.RefreshAsync();
         }
     }
 }

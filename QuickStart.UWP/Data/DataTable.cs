@@ -1,6 +1,8 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.Sync;
+using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace QuickStart.UWP.Data
@@ -19,6 +21,14 @@ namespace QuickStart.UWP.Data
             {
                 var store = await DataStore.GetInstance();
                 _controller = store.CloudService.GetSyncTable<T>();
+
+                // Read the stuff in the table already
+                var list = await _controller.ToListAsync();
+                var iterator = list.GetEnumerator();
+                while (iterator.MoveNext())
+                {
+                    Add(iterator.Current);
+                }
             }
         }
 
@@ -84,12 +94,22 @@ namespace QuickStart.UWP.Data
         {
             await InitializeAsync();
 
-            // Do the Pushes
             var store = await DataStore.GetInstance();
-            await store.CloudService.SyncContext.PushAsync();
+            if (store.IsAuthenticated)
+            {
+                try
+                {
+                    // Do the Pushes
+                    await store.CloudService.SyncContext.PushAsync();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("EXCEPTION:{0}", ex.Message);
+                }
 
-            // Do the pulls
-            await _controller.PullAsync("tablequery", _controller.CreateQuery());
+                // Do the pulls
+                await _controller.PullAsync("tablequery", _controller.CreateQuery());
+            }
         }
     }
 }
