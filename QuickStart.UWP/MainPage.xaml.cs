@@ -1,6 +1,7 @@
 ﻿using QuickStart.UWP.Data;
 using QuickStart.UWP.Models;
 using System;
+using System.IO;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -114,6 +115,13 @@ namespace QuickStart.UWP
                 catch (LoginDeniedException)
                 {
                     var dialog = new MessageDialog("Login Failed");
+                    dialog.Commands.Add(new UICommand("OK"));
+                    await dialog.ShowAsync();
+                    return;
+                }
+                catch (FileNotFoundException)
+                {
+                    var dialog = new MessageDialog("Authentication not configured on backend");
                     dialog.Commands.Add(new UICommand("OK"));
                     await dialog.ShowAsync();
                     return;

@@ -10,11 +10,11 @@ namespace QuickStart.UWP.Data
     public class DataStore
     {
         #region Static Settings
-        private static string clouduri = "https://ahall-mobile-nodebackend.azurewebsites.net";
-        private static string authuri = "https://ahall-mobile-nodebackend76b3a38a6e13467e89f514e427f2fda8.azurewebsites.net";
+        private static string clouduri = "https://ahall-mobileapps-starter.azurewebsites.net";
+        private static string authuri = "https://ahall-mobileapps-starter76b3a38a6e13467e89f514e427f2fda8.azurewebsites.net";
         private static string appkey = "";
 
-        private static string localcache = "taskstore.db";
+        private static string localcache = "localtaskstore.db";
         #endregion
 
         #region Private Instance Variables
