@@ -1609,7 +1609,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WindowsAzure.MobileServices/2.0.0-beta-2": {
+      "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -1624,7 +1624,7 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
       },
-      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -3337,7 +3337,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WindowsAzure.MobileServices/2.0.0-beta-2": {
+      "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -3352,7 +3352,7 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
       },
-      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -5037,7 +5037,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WindowsAzure.MobileServices/2.0.0-beta-2": {
+      "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -5052,7 +5052,7 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
       },
-      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -6770,7 +6770,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WindowsAzure.MobileServices/2.0.0-beta-2": {
+      "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -6785,7 +6785,7 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
       },
-      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -8470,7 +8470,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WindowsAzure.MobileServices/2.0.0-beta-2": {
+      "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -8485,7 +8485,7 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
       },
-      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -10203,7 +10203,7 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WindowsAzure.MobileServices/2.0.0-beta-2": {
+      "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -10218,7 +10218,7 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
       },
-      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -11903,7 +11903,7 @@
           "runtimes/win8-aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "WindowsAzure.MobileServices/2.0.0-beta-2": {
+      "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -11918,7 +11918,7 @@
           "lib/netcore45/Microsoft.WindowsAzure.Mobile.Ext.dll": {}
         }
       },
-      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
+      "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
         "dependencies": {
           "Microsoft.Bcl": "[1.1.9, )",
           "Microsoft.Net.Http": "[2.2.28, )",
@@ -15624,8 +15624,8 @@
         "System.Xml.XmlSerializer.nuspec"
       ]
     },
-    "WindowsAzure.MobileServices/2.0.0-beta-2": {
-      "sha512": "xIvNE3h86fkDhuxgMyfrsdKCLOEIjEeNgJaFWU5WQBNu+83VNPi1PtZggiQRrLFMaldUAPFiCV5OE6xUh5DqvA==",
+    "WindowsAzure.MobileServices/2.0.0-beta-2-151105": {
+      "sha512": "ZEZ2AUiaMAWt5f9O/Uj2YBz+3w+XQzuDawi747iP8w99Cmocp5aCh7WcG3IeS8ts6hEy8LFg9NiXS516EiHSjA==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
@@ -15663,18 +15663,18 @@
         "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.dll",
         "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.Ext.xml",
         "lib/Xamarin.iOS10/Microsoft.WindowsAzure.Mobile.xml",
-        "package/services/metadata/core-properties/05570735181d45f09a1a3deebfd09397.psmdcp",
+        "package/services/metadata/core-properties/afd6acd7d0c44ef3b2c6b6373392f8cc.psmdcp",
         "WindowsAzure.MobileServices.nuspec"
       ]
     },
-    "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta": {
-      "sha512": "Tr2HcrGugI4iFzygSDebAlNRp2+ngPR++2n749Q76DwItzcXnGVzJ1L2458G4OmYQ36bz4+GwTbeaFoxE9Kw/g==",
+    "WindowsAzure.MobileServices.SQLiteStore/2.0.0-beta-151105": {
+      "sha512": "GtyJx2U9Uq154SGf8WoyrD3bqm6pc2NNIaZ3yAFIpx4hy/6pT/ZnAPS5sI92Cl4b1cbadvLb3YQXc3NGcrDZYQ==",
       "type": "Package",
       "files": [
         "[Content_Types].xml",
         "_rels/.rels",
         "lib/portable-win+net45+wp8+wpa81+monotouch+monoandroid/Microsoft.WindowsAzure.Mobile.SQLiteStore.dll",
-        "package/services/metadata/core-properties/c114f4693bf94095802701145a48a9ae.psmdcp",
+        "package/services/metadata/core-properties/3e887ffa8cc24762bfc32e0d09fe3fe5.psmdcp",
         "WindowsAzure.MobileServices.SQLiteStore.nuspec"
       ]
     }
@@ -15685,8 +15685,8 @@
       "Microsoft.ApplicationInsights.PersistenceChannel >= 1.0.0",
       "Microsoft.ApplicationInsights.WindowsApps >= 1.0.0",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.0.0",
-      "WindowsAzure.MobileServices >= 2.0.0-beta-2",
-      "WindowsAzure.MobileServices.SQLiteStore >= 2.0.0-beta"
+      "WindowsAzure.MobileServices >= 2.0.0-beta-2-151105",
+      "WindowsAzure.MobileServices.SQLiteStore >= 2.0.0-beta-151105"
     ],
     "UAP,Version=v10.0": []
   }

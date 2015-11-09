@@ -2,9 +2,11 @@
 using QuickStart.UWP.Models;
 using System;
 using System.IO;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace QuickStart.UWP
@@ -119,7 +121,7 @@ namespace QuickStart.UWP
                     await dialog.ShowAsync();
                     return;
                 }
-                catch (FileNotFoundException)
+                catch (Exception)
                 {
                     var dialog = new MessageDialog("Authentication not configured on backend");
                     dialog.Commands.Add(new UICommand("OK"));
@@ -129,7 +131,23 @@ namespace QuickStart.UWP
             }
 
             // We are authenticated
-            await taskTable.RefreshAsync();
+            // Turn the Sync green and disable it
+            var oldForeground = loginSyncButton.Foreground;
+            loginSyncButton.IsEnabled = false;
+            // Do the sync
+            try
+            {
+                await taskTable.RefreshAsync();
+            }
+            catch (Exception ex)
+            {
+                var dialog = new MessageDialog(String.Format("Refresh from Cloud failed:\n{0}", ex.Message));
+                dialog.Commands.Add(new UICommand("OK"));
+                await dialog.ShowAsync();
+                return;
+            }
+            // Re-enable the sync button
+            loginSyncButton.IsEnabled = true;
         }
     }
 }

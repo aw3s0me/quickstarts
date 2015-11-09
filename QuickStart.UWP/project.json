@@ -4,8 +4,8 @@
     "Microsoft.ApplicationInsights.PersistenceChannel": "1.0.0",
     "Microsoft.ApplicationInsights.WindowsApps": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "WindowsAzure.MobileServices": "2.0.0-beta-2",
-    "WindowsAzure.MobileServices.SQLiteStore": "2.0.0-beta"
+    "WindowsAzure.MobileServices": "2.0.0-beta-2-151105",
+    "WindowsAzure.MobileServices.SQLiteStore": "2.0.0-beta-151105"
   },
   "frameworks": {
     "uap10.0": {}
