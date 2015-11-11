@@ -104,7 +104,7 @@ namespace QuickStart.UWP.Data
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine("EXCEPTION:{0}", ex.Message);
+                    Debug.WriteLine(string.Format("EXCEPTION:{0}", ex.Message));
                 }
 
                 // Do the pulls
