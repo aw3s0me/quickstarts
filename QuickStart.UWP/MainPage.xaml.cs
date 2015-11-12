@@ -144,6 +144,7 @@ namespace QuickStart.UWP
                 var dialog = new MessageDialog(String.Format("Refresh from Cloud failed:\n{0}", ex.Message));
                 dialog.Commands.Add(new UICommand("OK"));
                 await dialog.ShowAsync();
+                loginSyncButton.IsEnabled = true;
                 return;
             }
             // Re-enable the sync button
