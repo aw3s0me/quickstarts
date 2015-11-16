@@ -1,0 +1,19 @@
+{
+  "name": "Quickstart.Cordova",
+  "version": "1.0.0",
+  "description": "A QuickStart package for Apache Cordova",
+  "main": "index.js",
+  "author": {
+    "name": "Adrian Hall",
+    "email": "adrian@shellmonger.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
