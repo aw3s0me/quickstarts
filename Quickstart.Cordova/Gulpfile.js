@@ -4,6 +4,10 @@ var babelify = require('babelify'),
     rename = require('gulp-rename')
     source = require('vinyl-source-stream');
 
+gulp.task('default', [ 'build' ]);
+gulp.task('build', [ 'js:bundle' ]);
+
+
 gulp.task('js:bundle', function () {
   var bundler = browserify({
     entry: './src/js/index.js',
