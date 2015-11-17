@@ -8,7 +8,7 @@
     "email": "adrian@shellmonger.com"
   },
   "scripts": {
-    "prestart": "gulp build"
+    "build": "gulp build"
   },
   "license": "MIT",
   "devDependencies": {
