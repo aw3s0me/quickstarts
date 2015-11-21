@@ -1,0 +1,29 @@
+@import 'fullscreen';
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+
+    > header, > footer {
+        display: block;
+        order: 0;
+
+        @media screen and (orientation: portrait) {
+            flex-basis: 3vh;
+            height: 3vh;
+        }
+        @media screen and (orientation: landscape) {
+            flex-basis: 3vw;
+            height: 3vw;
+        }
+    }
+
+    > header { background-color: goldenrod; }
+    > footer { background-color: darkslategrey; }
+
+    > section {
+        display: block;
+        flex-grow: 1;
+        background-color: white;
+    }
+}

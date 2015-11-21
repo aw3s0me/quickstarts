@@ -1,12 +1,18 @@
 var babelify = require('babelify'),
     browserify = require('browserify'),
     gulp = require('gulp'),
-    rename = require('gulp-rename')
+    rename = require('gulp-rename'),
+    sass = require('gulp-sass'),
     source = require('vinyl-source-stream');
 
 gulp.task('default', [ 'build' ]);
-gulp.task('build', [ 'js:bundle' ]);
+gulp.task('build', [ 'js:bundle', 'css:bundle' ]);
 
+gulp.task('css:bundle', function () {
+    gulp.src('./src/scss/index.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./www/css'));
+});
 
 gulp.task('js:bundle', function () {
   var bundler = browserify({
