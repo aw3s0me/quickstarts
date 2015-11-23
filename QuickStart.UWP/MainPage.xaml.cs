@@ -16,7 +16,7 @@ namespace QuickStart.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private DataTable<TaskItem> taskTable = new DataTable<TaskItem>();
+        private DataTable<TodoItem> taskTable = new DataTable<TodoItem>();
 
         public MainPage()
         {
@@ -61,7 +61,7 @@ namespace QuickStart.UWP
         private async void CheckBoxComplete_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox checkbox = (CheckBox)sender;
-            TaskItem item = checkbox.DataContext as TaskItem;
+            TodoItem item = checkbox.DataContext as TodoItem;
             item.Completed = (bool)checkbox.IsChecked;
 
             await taskTable.UpdateAsync(item);
@@ -74,7 +74,7 @@ namespace QuickStart.UWP
         /// <param name="e"></param>
         private async void SaveTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            await taskTable.CreateAsync(new TaskItem {
+            await taskTable.CreateAsync(new TodoItem {
                 Id = Guid.NewGuid().ToString(),
                 Title = NewTaskContent.Text.Trim()
             });

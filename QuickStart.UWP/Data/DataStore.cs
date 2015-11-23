@@ -10,7 +10,7 @@ namespace QuickStart.UWP.Data
     public class DataStore
     {
         #region Static Settings
-        private static string clouduri = "https://ahall-mobileapps-starter.azurewebsites.net";
+        private static string clouduri = "https://ahall-samples-push-on-insert.azurewebsites.net";
         private static string localcache = "localtaskstore.db";
         #endregion
 
@@ -29,7 +29,7 @@ namespace QuickStart.UWP.Data
             LocalCacheService = new MobileServiceSQLiteStore(localcache);
 
             // Define the table structure
-            ((MobileServiceSQLiteStore)LocalCacheService).DefineTable<TaskItem>();
+            ((MobileServiceSQLiteStore)LocalCacheService).DefineTable<TodoItem>();
 
             // Initialize the local store
             await CloudService.SyncContext.InitializeAsync(LocalCacheService);
