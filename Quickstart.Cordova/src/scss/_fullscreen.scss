@@ -1,7 +1,17 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    box-sizing: border-box;
+}
+
 html, body {
+    -webkit-touch-callout: none;    /* prevent callout to copy image, etc. when tap to hold */
+    -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;      /* prevent copy past to allow, change none to text */
     padding: 0;
     margin: 0;
     font-size: 12px;
+    font-family: Arial, Arial, Helvetica, sans-serif;
+    background-color: #e0e0e0;
 }
 
 body {
