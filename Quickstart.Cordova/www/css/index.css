@@ -23,6 +23,110 @@ body {
   top: 0;
   bottom: 0; }
 
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  /* Header takes up just enough room so that it can hold the content */
+  /* Add-Item Section takes up just enough room to hold it. */
+  /* List Items Section takes up most of the room */
+  /* Footer takes up just enough room */ }
+  body > header {
+    display: block;
+    background-color: #71BCFA; }
+    body > header > div.split {
+      display: flex;
+      flex-flow: row nowrap; }
+      body > header > div.split > hgroup {
+        display: block;
+        flex-grow: 1; }
+        body > header > div.split > hgroup h1 {
+          text-transform: uppercase;
+          font-weight: normal;
+          margin: 4px;
+          color: white;
+          font-size: 14px; }
+        body > header > div.split > hgroup h2 {
+          text-transform: uppercase;
+          font-weight: normal;
+          margin: 4px;
+          color: #545353;
+          font-size: 20px; }
+      body > header > div.split > div.icons {
+        display: block;
+        flex-basis: 64px;
+        width: 64px; }
+        body > header > div.split > div.icons > div.icon {
+          width: 32px;
+          height: 32px;
+          margin: 16px;
+          font-size: 24px;
+          color: #F0F0F0;
+          /* Make the icons clickable */ }
+          body > header > div.split > div.icons > div.icon span {
+            cursor: pointer; }
+  body > section.add-item {
+    display: block;
+    background: #71BCFA;
+    padding: 4px 0 8px 0; }
+    body > section.add-item > form#add-item {
+      display: flex;
+      flex-flow: row nowrap;
+      margin: 0 8px; }
+      body > section.add-item > form#add-item > div.textbox {
+        display: block;
+        flex-grow: 1; }
+        body > section.add-item > form#add-item > div.textbox > input#new-item-text {
+          width: 100%;
+          height: 26px;
+          border: 1px solid #999;
+          font-size: 1em; }
+      body > section.add-item > form#add-item > div.buttons {
+        display: block; }
+        body > section.add-item > form#add-item > div.buttons > button {
+          margin-left: 10px;
+          padding: 0 10px;
+          height: 26px;
+          border-radius: 4px; }
+  body > section#list-items-section {
+    display: block;
+    flex-grow: 1;
+    background: #F4F4FA; }
+    body > section#list-items-section > ul#todo-items {
+      padding: 8px;
+      margin: 0px; }
+      body > section#list-items-section > ul#todo-items li {
+        list-style-type: none;
+        height: 36px;
+        padding: 0px;
+        border-bottom: 1px solid #dadada; }
+        body > section#list-items-section > ul#todo-items li div {
+          overflow: hidden;
+          padding: 5px 2px; }
+        body > section#list-items-section > ul#todo-items li .item-complete {
+          float: left;
+          margin: 0px;
+          height: 100%; }
+        body > section#list-items-section > ul#todo-items li .item-text {
+          width: 100%;
+          height: 26px;
+          line-height: 24px;
+          border: 1px solid transparent;
+          background-color: transparent; }
+          body > section#list-items-section > ul#todo-items li .item-text:focus, body > section#list-items-section > ul#todo-items li .item-text:hover {
+            border-color: #aaa;
+            background-color: #ffc; }
+  body > footer {
+    display: block;
+    background: #F4F4FA; }
+    body > footer p#summary {
+      text-align: center;
+      font-size: 0.8em;
+      margin-top: 12px; }
+
+input[type=text], input:not([type]) {
+  padding: 0 10px;
+  text-overflow: ellipsis; }
+
 button {
   border: 1px solid #999;
   color: #555;
@@ -30,96 +134,3 @@ button {
   padding: 0 10px; }
   button:hover {
     background-color: white; }
-
-input[type=text], input:not([type]) {
-  padding: 0 10px;
-  text-overflow: ellipsis; }
-
-#wrapper {
-  max-width: 800px;
-  margin: auto;
-  padding: 30px 10px 10px 10px; }
-
-#summary {
-  text-align: center;
-  padding: 8px 0; }
-
-article {
-  background-color: white;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.75);
-  border-radius: 10px; }
-  article header {
-    background-color: #71BCFA;
-    padding: 10px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px; }
-    article header h1, article header h2 {
-      text-transform: uppercase;
-      font-weight: normal;
-      margin: 4px; }
-    article header h1 {
-      color: #545353;
-      font-size: 20px; }
-    article header h2 {
-      color: white;
-      font-size: 14px; }
-
-#add-item {
-  height: 26px;
-  margin: 8px 0 5px 0;
-  font-size: 1em; }
-  #add-item abbr
-div {
-    overflow: hidden; }
-  #add-item button {
-    float: right;
-    margin-left: 10px;
-    padding: 0 10px;
-    height: 100%;
-    border-radius: 4px; }
-
-#new-item-text {
-  width: 70%;
-  height: 26px;
-  border: 1px solid #999;
-  font-size: 1em;
-  border-radius: 4px; }
-
-#todo-items {
-  padding: 8px;
-  margin: 0px; }
-  #todo-items li {
-    list-style-type: none;
-    height: 36px;
-    padding: 0px;
-    border-bottom: 1px solid #dadada; }
-    #todo-items li div {
-      overflow: hidden;
-      padding: 5px 2px; }
-  #todo-items .item-complete {
-    float: left;
-    margin: 0px;
-    height: 100%; }
-  #todo-items .item-text {
-    width: 100%;
-    height: 26px;
-    line-height: 24px;
-    border: 1px solid transparent;
-    background-color: transparent; }
-    #todo-items .item-text:focus, #todo-items .item-text:hover {
-      border-color: #aaa;
-      background-color: #ffc; }
-
-footer {
-  text-align: center;
-  font-size: 0.8em;
-  margin-top: 20px; }
-  footer a {
-    color: #666;
-    display: block; }
-  footer #errorlog {
-    color: red;
-    font-weight: bold;
-    padding: 8px;
-    display: inline-block;
-    text-align: left; }

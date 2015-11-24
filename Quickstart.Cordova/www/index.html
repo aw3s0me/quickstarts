@@ -6,30 +6,38 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="lib/node_modules/font-awesome/css/font-awesome.min.css">
         <title>Cordova Quickstart</title>
     </head>
     <body>
-        <div id="wrapper">
-            <article>
-                <header>
-                    <h2>Windows Azure</h2>
-                    <h1>Mobile Apps Quickstart</h1>
-                    <form id="add-item">
-                        <button type="submit" id="refresh-tasks">Refresh</button>
-                        <button type="submit" id="add-new-task">Add</button>
-                        <div><input type="text" id="new-item-text" placeholder="Enter new task"/></div>
-                    </form>
-                </header>
-                
-                <ul id="todo-items"></ul>
-                
-                <p id="summary">Booting...</p>
-            </article>
-            
-            <footer>
-                <ul id="errorlog"></ul>
-            </footer>
-        </div> 
+        <header>
+            <div class="split">
+                <hgroup>
+                    <h1>Windows Azure</h1>
+                    <h2>Mobile Apps QuickStart</h2>
+                </hgroup>
+                <div class="icons">
+                    <div class="icon"><span id="refresh-icon" class="fa fa-refresh"></span></div>
+                </div>
+            </div>
+        </header>
+        <section class="add-item">
+            <form id="add-item">
+                <div class="textbox">
+                    <input type="text" id="new-item-text" placeholder="Enter new task">
+                </div>
+                <div class="buttons">
+                    <button type="submit" id="add-new-task">Add</button>
+                </div>
+            </form>
+        </section>
+        <section id="list-items-section">
+            <ul id="todo-items"></ul>
+        </section>
+        <footer>
+            <p id="summary">Booting...</p>
+            <ul id="errorlog"></ul>
+        </footer>
 
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
