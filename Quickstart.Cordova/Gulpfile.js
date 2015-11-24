@@ -16,7 +16,7 @@ gulp.task('css:bundle', function () {
 });
 
 gulp.task('libs:copy', function () {
-    gulp.src(npmfiles(), { base: './' })
+    gulp.src(npmfiles())
         .pipe(gulp.dest('./www/lib'));
 });
 
