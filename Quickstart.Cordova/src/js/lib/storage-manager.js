@@ -1,15 +1,30 @@
 import uuid from 'uuid';
+/* global OData */
 
 export default class Store {
     constructor() {
         console.info('Initializing Storage Manager');
-        
+
+        /*
         this._data = [
             { id: uuid.v1(), text: 'Item 1', complete: false },
             { id: uuid.v1(), text: 'Item 2', complete: false }
         ];
-    } 
-    
+        */
+
+        // We need to add the ZUMO-API-VERSION to the headers of the OData request
+        this._defaultHttpClient = OData.defaultHttpClient;
+        OData.defaultHttpClient = {
+            request: (request, success, error) => {
+                request.headers['ZUMO-API-VERSION'] = '2.0.0';
+                this._defaultHttpClient.request(request, success, error);
+            }
+        };;
+
+        this._service = 'https://ahall-todo-list.azurewebsites.net';
+        this._store = `${this._service}/tables/TodoList`;
+    }
+
     /**
      * Read some records based on the query.  The elements must match
      * the query
@@ -19,6 +34,24 @@ export default class Store {
      */
     read(query) {
         console.log('[storage-manager] read query=', query);
+
+        var promise = new Promise((resolve, reject) => {
+            /* odata.read(url, success(data,response), error(error), handler, httpClient, metadata); */
+
+            var successFn = (data, response) => {
+                console.info('[storage-manager] read data=', data);
+                console.info('[storage-manager] read response=', response);
+                resolve(data);
+            };
+            var errorFn = (error) => {
+                console.error('[storage-manager] read error=', error);
+                reject(error);
+            };
+
+            OData.read(this._store, successFn, errorFn);
+        });
+
+        /*
         var promise = new Promise((resolve, reject) => {
             var filteredData = this._data.filter((element, index, array) => {
                 for (let q in query) {
@@ -30,10 +63,11 @@ export default class Store {
             });
             resolve(filteredData);
         });
-        
+        */
+
         return promise;
-    }  
-    
+    }
+
     /**
      * Insert a new object into the database.
      * @method insert
@@ -48,10 +82,10 @@ export default class Store {
             this._data.push(data);
             resolve(data);
         });
-        
+
         return promise;
-    } 
-    
+    }
+
     /**
      * Fetches a record by ID
      * @method get
@@ -70,7 +104,7 @@ export default class Store {
         });
         return promise;
     }
-    
+
     /**
      * Update a record
      * @method update
