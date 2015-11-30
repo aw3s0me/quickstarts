@@ -1,5 +1,6 @@
 var babelify = require('babelify'),
     browserify = require('browserify'),
+    del = require('del'),
     gulp = require('gulp'),
     npmfiles = require('gulp-npm-files'),
     rename = require('gulp-rename'),
@@ -9,6 +10,14 @@ var babelify = require('babelify'),
 gulp.task('default', [ 'build' ]);
 gulp.task('build', [ 'js:bundle', 'css:bundle', 'libs:copy' ]);
 
+gulp.task('clean', function () {
+    return del([
+        'www/js/index.js',
+        'www/css/index.css',
+        'www/lib'
+    ]);
+});
+
 gulp.task('css:bundle', function () {
     gulp.src('./src/scss/index.scss')
         .pipe(sass().on('error', sass.logError))
@@ -16,7 +25,7 @@ gulp.task('css:bundle', function () {
 });
 
 gulp.task('libs:copy', function () {
-    gulp.src(npmfiles())
+    gulp.src(npmfiles(), { base: './node_modules' })
         .pipe(gulp.dest('./www/lib'));
 });
 
