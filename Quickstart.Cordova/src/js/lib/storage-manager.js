@@ -21,7 +21,7 @@ export default class Store {
             }
         };;
 
-        this._service = 'https://ahall-todo-list.azurewebsites.net';
+        this._service = 'http://localhost:3000';
         this._store = `${this._service}/tables/TodoList`;
     }
 
