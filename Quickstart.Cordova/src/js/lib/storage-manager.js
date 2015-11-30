@@ -5,13 +5,6 @@ export default class Store {
     constructor() {
         console.info('Initializing Storage Manager');
 
-        /*
-        this._data = [
-            { id: uuid.v1(), text: 'Item 1', complete: false },
-            { id: uuid.v1(), text: 'Item 2', complete: false }
-        ];
-        */
-
         // We need to add the ZUMO-API-VERSION to the headers of the OData request
         this._defaultHttpClient = OData.defaultHttpClient;
         OData.defaultHttpClient = {
@@ -21,7 +14,7 @@ export default class Store {
             }
         };;
 
-        this._service = 'http://localhost:3000';
+        this._service = 'https://ahall-todo-list.azurewebsites.net';
         this._store = `${this._service}/tables/TodoList`;
     }
 
@@ -50,20 +43,6 @@ export default class Store {
 
             OData.read(this._store, successFn, errorFn);
         });
-
-        /*
-        var promise = new Promise((resolve, reject) => {
-            var filteredData = this._data.filter((element, index, array) => {
-                for (let q in query) {
-                    if (query[q] !== element[q]) {
-                        return false;
-                    }
-                }
-                return true;
-            });
-            resolve(filteredData);
-        });
-        */
 
         return promise;
     }
