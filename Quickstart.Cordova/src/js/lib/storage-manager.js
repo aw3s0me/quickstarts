@@ -1,22 +1,13 @@
 import uuid from 'uuid';
-/* global OData */
 
 export default class Store {
     constructor() {
         console.info('Initializing Storage Manager');
 
-        // We need to add the ZUMO-API-VERSION to the headers of the OData request
-        this._defaultHttpClient = OData.defaultHttpClient;
-        OData.defaultHttpClient = {
-            request: (request, success, error) => {
-                request.headers['ZUMO-API-VERSION'] = '2.0.0';
-                this._defaultHttpClient.request(request, success, error);
-            }
-        };;
-
-        this._service = 'https://ahall-todo-list.azurewebsites.net';
-        this._store = `${this._service}/tables/TodoList`;
+        this._data = [];
     }
+
+
 
     /**
      * Read some records based on the query.  The elements must match
@@ -29,21 +20,16 @@ export default class Store {
         console.log('[storage-manager] read query=', query);
 
         var promise = new Promise((resolve, reject) => {
-            /* odata.read(url, success(data,response), error(error), handler, httpClient, metadata); */
-
-            var successFn = (data, response) => {
-                console.info('[storage-manager] read data=', data);
-                console.info('[storage-manager] read response=', response);
-                resolve(data);
-            };
-            var errorFn = (error) => {
-                console.error('[storage-manager] read error=', error);
-                reject(error);
-            };
-
-            OData.read(this._store, successFn, errorFn);
+            var filteredData = this._data.filter((element, index, array) => {
+                for (let q in query) {
+                    if (query[q] !== element[q]) {
+                        return false;
+                    }
+                }
+                return true;
+            });
+            resolve(filteredData);
         });
-
         return promise;
     }
 
